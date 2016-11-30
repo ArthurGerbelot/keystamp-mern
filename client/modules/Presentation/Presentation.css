@@ -1,0 +1,19 @@
+.presentation {
+  height: 100%;
+  /*background: radial-gradient(#262626, #0d0d0d) no-repeat;*/
+  background: linear-gradient(-45deg, #132895, #03a9f4) no-repeat;
+  display: flex;
+}
+.container {
+  margin: auto;
+  text-align: center;
+}
+.container h1 {
+  color: #EEE;
+  font-size: 4em;
+}
+.container h3 {
+  color: #03A9F4;
+  font-size: 2em;
+  text-shadow: -1px -1px 2px rgba(19,40,149,.5); /* #132895 .5 */
+}
