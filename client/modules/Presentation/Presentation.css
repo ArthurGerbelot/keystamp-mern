@@ -7,6 +7,9 @@
   /*background: radial-gradient(#262626, #0d0d0d) no-repeat;*/
   background: linear-gradient(-45deg, #132895, #03a9f4) no-repeat;
   transition: padding .5s;
+  padding-left: 25px;
+  padding-right: 25px;
+  overflow: hidden;
 }
 .presentation[data-step="0"] {
   padding-top: 250px;
@@ -64,6 +67,8 @@
 .col-right, .col-left, .col-mid {
   float: left;
   text-align: center;
+  min-height: 100px;
+  position: relative;
 }
 .col-right, .col-left {
   width: 40%;
@@ -110,15 +115,16 @@
 
 /* First Button [Start Presentation] */
 .start-presentation {
-  margin-top: 50px;
-  background: #03a9f4;
-  color: #FFF;
+  overflow: hidden;
+  width: 20px;
+  height: 20px;
+  color: rgba(3,169,244,0); /*#03a9f4 .0*/;
+  background: rgba(174, 226, 249, 0); /*#03a9f4 .0*/
   border: 3px solid #03a9f4;
-  border-radius: 5px;
-  cursor: pointer;
+  border-radius: 50%;
+  font-weight: bold;
+  cursor: default;
   transition: all .5s;
-  width: 150px;
-  height: 40px;
 }
 .start-presentation,
 .start-presentation:hover,
@@ -126,16 +132,697 @@
 .start-presentation:focus,  {
   outline:0;
 }
-.start-presentation:hover {
+.presentation[data-step="0"] .start-presentation {
+  background: #03a9f4;
+  color: #FFF;
+  border-radius: 5px;
+  background: rgba(3,169,244,1); /*#03a9f4 .0*/
+  cursor: pointer;
+  width: 150px;
+  height: 40px;
+}
+.presentation[data-step="0"] .start-presentation:hover {
   color: #03a9f4;
   background: rgba(3,169,244,0); /*#03a9f4 .0*/
 }
+
+/* ----------- STEP 1 --------------- */
+
+ /* [Start Presentation] --> O */
 .presentation[data-step="1"] .start-presentation {
+  animation-name: startPresentationStep;
+  animation-duration: 1s
+}
+.presentation[data-step="1"] .start-presentation,
+.presentation[data-step="2"] .start-presentation {
+  background: rgba(174, 226, 249, 1); /*#03a9f4 .0*/
+}
+
+@keyframes startPresentationStep {
+  0% { background: rgba(174, 226, 249, 0) }
+  50% { background: rgba(174, 226, 249, 0) }
+  100% { background: rgba(174, 226, 249, 1) }
+}
+
+/* Row used for 1st Step */
+.row[data-step="1"] {
+  margin-top: 100px;
+  padding-top: 10px;
+}
+.tooltip {
+  position: absolute;
+  top: -3em;
+  left: 0;
+  right: 0;
+
+  background: #EEE;
+  padding: 5px 0;
+  border-radius: 2px;
+  box-shadow: 2px 2px 2px rgba(53, 53, 53, 0.76);
+
+  animation-name: tooltipOpen;
+  animation-duration: 2s; /*1s delay + 1sduration*/
+}
+@keyframes tooltipOpen {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  50% { /*end of delay */
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+.avatar:before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  border-radius: 50%;
+  background: linear-gradient(-45deg, #03a9f4, #132895) no-repeat;
+  animation-name: rotate;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  z-index: 1;
+}
+.avatar {
+  opacity: 1; /* step 0 */
+
+  position: relative;
+  width: 200px;
+  height: 200px;
+  margin: auto;
+  margin-top: 50px;
+}
+.avatar:after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  background-size: cover;
+  z-index: 3;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+}
+.avatar-advisor {
+  animation-name: avatarAdvisor;
+  animation-duration: 3s;
+}
+
+.avatar-advisor:after {
+  background-image: url('./img/avatar-advisor.jpg');
+}
+.avatar-customer {
+  animation-name: avatarCustomer;
+  animation-duration: 5s;
+}
+.avatar-customer:after {
+  background-image: url('./img/avatar-customer.jpg');
+}
+.avatar-text-advisor, .avatar-text-customer {
+  max-width: 300px;
+  margin: auto;
+  margin-top: 25px;
+  color: #EEE;
+}
+.avatar-text-advisor strong, .avatar-text-customer strong {
+  display: block;
+  margin-bottom: 10px;
+}
+.avatar-text-advisor {
+  animation-name: avatarAdvisorText;
+  animation-duration: 3s;
+}
+.avatar-text-customer {
+  animation-name: avatarCustomerText;
+  animation-duration: 5s;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes avatarAdvisor {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  66% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+@keyframes avatarCustomer {
+  0% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  80% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+@keyframes avatarAdvisorText {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  75% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+@keyframes avatarCustomerText {
+  0% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  85% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+
+
+/* ----------- STEP 2 --------------- */
+.messages {
+  position: absolute;
+  left: -25px;
+  top: 50px;
+  right: -25px;
+  z-index: 5;
+}
+.message {
+  position: relative;
+  padding: 4px 10px;
+  margin-top: 25px;
+  background: #EEE;
+  color: #333;
+}
+.message-1, .message-3 {
+  text-align: left;
+  margin-right: 50px;
+}
+.message-2, .message-4 {
+  text-align: right;
+  margin-left: 50px;
+}
+
+.message-1:before, .message-2:before, .message-3:before, .message-4:before {
+  position: absolute;
+  content: "";
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
+.message-1:before, .message-3:before {
+  left: -8px;
+  border-width: 5px 8.7px 5px 0;
+  border-color: transparent #eeeeee transparent transparent;
+}
+.message-2:before, .message-4:before {
+  right: -8px;
+  border-width: 5px 0 5px 8.7px;
+  border-color: transparent transparent transparent #eeeeee;
+}
+
+.message-1 {
+  animation-name: messageAnim1;
+  animation-duration: .5s;
+}
+.message-2 {
+  animation-name: messageAnim2;
+  animation-duration: 1s;
+}
+.message-3 {
+  animation-name: messageAnim3;
+  animation-duration: 1.5s;
+}
+.message-4 {
+  animation-name: messageAnim4;
+  animation-duration: 2s;
+}
+@keyframes messageAnim1 {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes messageAnim2 {
+  0% {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  50% {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes messageAnim3 {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  66.66% {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes messageAnim4 {
+  0% {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  75% {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.go-step-3 {
   overflow: hidden;
-  color: rgba(3,169,244,0); /*#03a9f4 .0*/;
-  background: rgba(3,169,244,0); /*#03a9f4 .0*/
   width: 20px;
   height: 20px;
+  color: rgba(3,169,244,0); /*#03a9f4 .0*/;
+  background: rgba(174, 226, 249, 0); /*#03a9f4 .0*/
+  border: 3px solid #03a9f4;
   border-radius: 50%;
   cursor: default;
+  font-weight: bold;
+  transition: all .5s;
+
+  animation-name: goStep3Anim;
+  animation-duration: 3s;
+}
+.go-step-3,
+.go-step-3:hover,
+.go-step-3:active,
+.go-step-3:focus,  {
+  outline:0;
+}
+.presentation[data-step="2"] .go-step-3 {
+  background: #03a9f4;
+  color: #FFF;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 150px;
+  height: 40px;
+}
+@keyframes goStep3Anim {
+  0% {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+  85% {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* --------------- STEP 3 ------------------ */
+.presentation[data-step="3"] .tooltip {
+  animation-name: leaveTop;
+  animation-duration: .5s;
+  opacity: 0;
+}
+.presentation[data-step="3"] .message-1, .presentation[data-step="3"] .message-3 {
+  animation-name: leaveLeft;
+  animation-duration: .5s;
+  opacity: 0;
+}
+.presentation[data-step="3"] .message-2, .presentation[data-step="3"] .message-4 {
+  animation-name: leaveRight;
+  animation-duration: .5s;
+  opacity: 0;
+}
+@keyframes leaveRight {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+}
+@keyframes leaveLeft {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+}
+@keyframes leaveTop {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+}
+.presentation[data-step="3"] .row[data-step="1"] {
+  margin-top: 30px;
+  height: 250px;
+  overflow: hidden;
+  animation-name: presentationRow;
+  animation-duration: 1.5s;
+}
+@keyframes presentationRow {
+  0% {
+    margin-top: 100px;
+    height: 400px;
+  }
+  66% {
+    margin-top: 100px;
+    height: 400px;
+  }
+  100% {
+    margin-top: 30px;
+    height: 250px;
+  }
+}
+
+.line-container {
+  position: absolute;
+  top: 19px;
+  left:0;
+  right: 0;
+}
+.between-0-and-1 {
+  margin: auto;
+  width: 3px;
+  background: #03A9F4;
+}
+.presentation[data-step="3"] .between-0-and-1 {
+  height: 254px;
+  animation-name: lineBetween0and1;
+  animation-duration: 1.5s;
+}
+@keyframes lineBetween0and1 {
+  0% {
+    height: 0px;
+  }
+  66% {
+    height: 0px;
+  }
+  100% {
+    height: 254px;
+  }
+}
+
+.presentation[data-step="3"] .start-presentation {
+  background: rgba(174, 226, 249, 0);
+  animation-name: startPresentationUnactivate;
+  animation-duration: 1.5s;
+}
+@keyframes startPresentationUnactivate {
+  0% {
+    background: rgba(174, 226, 249, 1);
+  }
+  66% {
+    background: rgba(174, 226, 249, 1);
+  }
+  100% {
+    background: rgba(174, 226, 249, 0);
+  }
+}
+.presentation[data-step="3"] .go-step-3 {
+  background: rgba(174, 226, 249, 1);
+  color: rgba(3,169,244,0); /*#03a9f4 .0*/;
+  animation-name: goStep3Reduce;
+  animation-duration: 1.5s;
+}
+@keyframes goStep3Reduce {
+  0% {
+    background: rgba(174, 226, 249, 0);
+  }
+  66% {
+    background: rgba(174, 226, 249, 0);
+  }
+  100% {
+    background: rgba(174, 226, 249, 1);
+  }
+}
+
+.presentation[data-step="3"] .avatar {
+  animation-name: avatarResize;
+  animation-duration: 1.5s;
+  width: 128px;
+  height: 128px;
+  margin-top: 0;
+}
+@keyframes avatarResize {
+  0% {
+    width: 200px;
+    height: 200px;
+    margin-top: 50px;
+  }
+  66% {
+    width: 200px;
+    height: 200px;
+    margin-top: 50px;
+  }
+  100% {
+    width: 128px;
+    height: 128px;
+    margin-top: 0;
+  }
+}
+.presentation[data-step="3"] .avatar-text-advisor span, .presentation[data-step="3"] .avatar-text-customer span {
+  animation-name: avatarTextHide;
+  animation-duration: 1.5s;
+  opacity: 0;
+}
+@keyframes avatarTextHide {
+  0% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+  66% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+}
+
+.upload-tooltip-container {
+  position: absolute;
+  top: -4px;
+  left: 0;
+  right: 0;
+
+  animation-name: tooltipUploadOpen;
+  animation-duration: 1.5s; /*1s delay + 1sduration*/
+  transform: translateX(100px);
+}
+.upload-tooltip {
+  display: block;
+  width: 150px;
+  margin: auto;
+
+  background: #EEE;
+  padding: 5px 0;
+  border-radius: 2px;
+  box-shadow: 2px 2px 2px rgba(53, 53, 53, 0.76);
+}
+@keyframes tooltipUploadOpen {
+  0% {
+    opacity: 0;
+    transform: translateX(200px);
+    color: rgba(3,169,244,1); /*#03a9f4 .0*/;
+  }
+  66.66% {
+    opacity: 0;
+    transform: translateX(200px);
+    color: rgba(3,169,244,0); /*#03a9f4 .0*/;
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(100px);
+    color: rgba(3,169,244,0); /*#03a9f4 .0*/;
+  }
+}
+
+/* --------------- STEP 4 ------------------ */
+
+/* HIDE ALL OLD ELEMENT - SET NEW STEP 4 CSS */
+.presentation[data-step="4"] .row[data-step="1"] {
+  margin-top: 30px;
+  height: 250px;
+  overflow: hidden;
+  animation-name: none;
+}
+.presentation[data-step="4"] .tooltip,
+.presentation[data-step="4"] .message,
+.presentation[data-step="4"] .avatar-text-advisor span,
+.presentation[data-step="4"] .avatar-text-customer span {
+  display: none;
+  animation-name: none;
+}
+
+.presentation[data-step="4"] .avatar {
+  animation-name: none;
+  width: 128px;
+  height: 128px;
+  margin-top: 0;
+}
+
+.presentation[data-step="4"] .line-container {
+  position: absolute;
+  top: 19px;
+  left:0;
+  right: 0;
+}
+.presentation[data-step="4"] .between-0-and-1 {
+  margin: auto;
+  width: 3px;
+  background: #03A9F4;
+  height: 254px;
+  animation-name: none;
+}
+.presentation[data-step="4"] .start-presentation {
+  background: rgba(174, 226, 249, 0);
+  animation-name: none;
+}
+.presentation[data-step="4"] .go-step-3 {
+  background: rgba(174, 226, 249, 1);
+  animation-name: none;
+}
+
+
+.presentation[data-step="4"] .col-left {
+  width: 20%;
+  transition: all 1s
+}
+.presentation[data-step="4"] .col-right {
+  width: 60%;
+  transition: all 1s
+}
+
+.upload-form {
+  position: relative;
+  margin: auto;
+  width: 65%;
+  height: 200px;
+  background: #DDD;
+  border-radius: 4px;
+
+  animation-name: uploadFormAnim;
+  animation-duration: 1.5s;
+}
+@keyframes uploadFormAnim {
+  0% {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+  33.33% {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+.upload-form-arrow {
+  position: absolute;
+  top: -32px;
+  left: 0;
+  right: 0;
+}
+.upload-form-arrow:before {
+  margin: auto;
+  content: "";
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 8px 13.9px 8px;
+  border-color: transparent transparent #DDD transparent;
+}
+.upload-form strong {
+  line-height: 30px;
+}
+.upload-form .icon {
+  margin-right: 0.5em;
+}
+.upload-form-zone {
+  position: absolute;
+  top: 30px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  display: flex;
+  border: 1px solid #04A4F1;
+  border-radius: 4px;
+  background: #A1D2E9;
+  color: #03a9f4;
+  font-size: 1.7em;
+}
+.upload-form-zone span {
+  display: block;
+  margin: auto;
+}
+
+.upload-form-zone .bg-icon {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  font-size: 90px;
+  transform: rotate(-15deg);
+  color: #7BCDF3;
 }
