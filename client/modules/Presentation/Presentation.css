@@ -1,19 +1,141 @@
+
+/* Global Object */
+/* Attribute : [data-step="0"] */
+
 .presentation {
   height: 100%;
   /*background: radial-gradient(#262626, #0d0d0d) no-repeat;*/
   background: linear-gradient(-45deg, #132895, #03a9f4) no-repeat;
-  display: flex;
+  transition: padding .5s;
 }
+.presentation[data-step="0"] {
+  padding-top: 250px;
+}
+
+/* Black Header on top of the pages */
+.header {
+  position: fixed;
+  top:0;
+  left:0;
+  right:0;
+  line-height: 4em;
+  height: 4em;
+  text-align: right;
+  background: rgba(0,0,0,0.5);
+  transition: all .5s;
+}
+.presentation[data-step="0"] .header {
+  background: rgba(0,0,0,0);
+}
+.header a, .header a:hover {
+  color: #FFF;
+  text-decoration: none;
+  cursor: pointer;
+  padding: 0 10px;
+  transition: all .5s;
+}
+.header a:hover {
+  color: #94DDFF;
+}
+
+/* Start presentation container (with Logo, h1 (to keep) and h3) */
 .container {
-  margin: auto;
   text-align: center;
+  perspective: 500px;
+
+  width: 200px;
+  transition: width .5s;
+}
+.presentation[data-step="0"] .container {
+  width: 100%;
 }
 .container h1 {
   color: #EEE;
+  font-size: 2em;
+  padding: 0 15px;
+  line-height: 4rem;
+  transition: all .5s;
+}
+.presentation[data-step="0"] .container h1 {
   font-size: 4em;
 }
+
+/* Define cols */
+.col-right, .col-left, .col-mid {
+  float: left;
+  text-align: center;
+}
+.col-right, .col-left {
+  width: 40%;
+}
+.col-mid {
+  width: 20%;
+}
+
+/* ----------- STEP 0 --------------- */
+/* H3 and logo will be removed after Step 0 */
 .container h3 {
   color: #03A9F4;
   font-size: 2em;
   text-shadow: -1px -1px 2px rgba(19,40,149,.5); /* #132895 .5 */
+  display: none;
+}
+.logo {
+  font-size: 7em;
+  color: rgba(9, 120, 208, 0.61);
+  text-shadow: 0px 0px 6px #0A6EC9, 0 0 0 #0C2F59, 1px 1px 6px #0A6EC9;
+  animation-name: logoAnim;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  display: none;
+  transition: all .5s
+}
+@keyframes logoAnim {
+  0% {
+    transform: rotateX(0) rotateY(0);
+  },
+  33% {
+    transform: rotateY(30deg);
+  },
+  66% {
+    transform: rotateY(-30deg);
+  },
+  100% {
+    transform: rotateX(0) rotateY(0);
+  }
+}
+.presentation[data-step="0"] .container h3, .presentation[data-step="0"] .container .logo {
+  display: block;
+}
+
+/* First Button [Start Presentation] */
+.start-presentation {
+  margin-top: 50px;
+  background: #03a9f4;
+  color: #FFF;
+  border: 3px solid #03a9f4;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all .5s;
+  width: 150px;
+  height: 40px;
+}
+.start-presentation,
+.start-presentation:hover,
+.start-presentation:active,
+.start-presentation:focus,  {
+  outline:0;
+}
+.start-presentation:hover {
+  color: #03a9f4;
+  background: rgba(3,169,244,0); /*#03a9f4 .0*/
+}
+.presentation[data-step="1"] .start-presentation {
+  overflow: hidden;
+  color: rgba(3,169,244,0); /*#03a9f4 .0*/;
+  background: rgba(3,169,244,0); /*#03a9f4 .0*/
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  cursor: default;
 }
