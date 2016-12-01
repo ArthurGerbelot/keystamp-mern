@@ -816,6 +816,7 @@
 .upload-form-zone span {
   display: block;
   margin: auto;
+  position: relative;
 }
 
 .upload-form-zone .bg-icon {
