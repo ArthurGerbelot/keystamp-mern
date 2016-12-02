@@ -239,14 +239,14 @@
 }
 
 .avatar-advisor:after {
-  background-image: url('./img/avatar-advisor.jpg');
+  background-image: url('http://keystamp-mern-presentation.herokuapp.com/avatar-advisor.jpg');
 }
 .avatar-customer {
   animation-name: avatarCustomer;
   animation-duration: 5s;
 }
 .avatar-customer:after {
-  background-image: url('./img/avatar-customer.jpg');
+  background-image: url('http://keystamp-mern-presentation.herokuapp.com/avatar-customer.jpg');
 }
 .avatar-text-advisor, .avatar-text-customer {
   max-width: 300px;
